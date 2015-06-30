@@ -1,0 +1,43 @@
+// Core calculations for determining secondary stats for the characters. I will slot these in to the main program later
+
+public int healthPoints(){
+		
+		int hitDie = 12;
+		int conBonus = 4;
+		int level = 1;
+		int HP;
+		
+		HP = (hitDie + conBonus) * level;  
+		
+		return healthPoints;
+	}
+	
+	public int armourClass(){
+		
+		int armourMaxDexBonus = 2;
+		int dexBonus = 4;
+		int totalArmourClass;
+		int armourValue;
+		
+		
+		if (dexBonus > armourMaxDexBonus){
+			dexBonus = armourMaxDexBonus;
+			
+			totalArmourClass = 10 + dexBonus + armourValue;
+		}
+		
+		return armourClass;
+	}
+	
+	public int savingThrows(){
+		
+		int savingThrow;
+		int statBonus;
+		int proficientBonus;
+		int proficiencyBonus;
+		
+		savingThrow = statBonus;
+		proficientBonus = savingThrow + proficiencyBonus;
+		
+		return savingThrows;
+	}
