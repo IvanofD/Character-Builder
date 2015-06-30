@@ -41,3 +41,38 @@ public int healthPoints(){
 		
 		return savingThrows;
 	}
+	
+	public int rangedAttackBonus(){
+		
+		int proficiencyBonus;
+		int statBonus;
+		
+		int rab = statBonus + proficiencyBonus;	
+		
+		return rangedAttackBonus;
+	}
+	
+	public int meleeAttackBonus(){
+		
+		int proficiencyBonus;
+		int statBonus;
+	
+		int mab = statBonus + proficiencyBonus;	
+		
+		return meleeAttackBonus;
+	}
+	
+	public int rangedDamageBonus(){
+		
+		
+		
+		return rangedDamageBonus;
+	}
+	
+	public int meleeDamageBonus(){
+		
+		
+		
+		return meleeDamageBonus;
+		
+	}
