@@ -10,9 +10,10 @@ public class Character {
 	
 	public static String charName;
 	public static String charClass;
+	public static String armourType;
 	
 	public static int level;
-	public static int hp;
+	public static int hitDie;
 	public static int ac;
 	public static int strength;
 	public static int dexterity;
@@ -86,6 +87,7 @@ public class Character {
 		intelligence = Integer.parseInt(data[6]);
 		wisdom = Integer.parseInt(data[7]);
 		charisma = Integer.parseInt(data[8]);
+		armourType = data[9];
 	}
 	// function to roll a dice 4 times
 	public static int rollDie(){
@@ -167,8 +169,23 @@ public class Character {
 	
 	public static void healthpoints(){
 		
-		int hitDie = 12;
+		
 		int HP;
+		
+		switch (charClass){
+		case "Barbarian":
+			hitDie = 12;
+			break;
+		case "Bard":
+			hitDie = 8;
+			break;
+		
+		
+		
+		}
+		
+		
+		
 		
 		HP = (hitDie + constitutionbonus) * level;	
 		
@@ -176,12 +193,87 @@ public class Character {
 	
 	public static void calculateProficiency(){
 		
-		switch (proficiencyBonus){
-		case 1:
-			if (level = 1)
+		switch (level){
+		case 1: 
+			if (level == 1)
 				proficiencyBonus = 2;
 			break;
-		
+		case 2:
+			if (level == 2)
+				proficiencyBonus = 2;
+			break;
+		case 3:
+			if (level == 3)
+				proficiencyBonus = 2;
+			break;
+		case 4:
+			if (level == 4)
+				proficiencyBonus = 2;
+			break;
+		case 5:
+			if (level == 5)
+				proficiencyBonus = 3;
+			break;
+		case 6:
+			if (level == 6)
+				proficiencyBonus = 3;
+			break;
+		case 7:
+			if (level == 7)
+				proficiencyBonus = 3;
+			break;
+		case 8:
+			if (level == 8)
+				proficiencyBonus = 3;
+			break;
+		case 9:
+			if (level == 9)
+				proficiencyBonus = 4;
+			break;
+		case 10:
+			if (level == 10)
+				proficiencyBonus = 4;
+			break;
+		case 11:
+			if (level == 11)
+				proficiencyBonus = 4;
+			break;
+		case 12:
+			if (level == 12)
+				proficiencyBonus = 4;
+			break;
+		case 13:
+			if (level == 13)
+				proficiencyBonus = 5;
+			break;
+		case 14:
+			if (level == 14)
+				proficiencyBonus = 5;
+			break;
+		case 15:
+			if (level == 15)
+				proficiencyBonus = 5;
+			break;
+		case 16:
+			if (level == 16)
+				proficiencyBonus = 5;
+			break;
+		case 17:
+			if (level == 17)
+				proficiencyBonus = 6;
+			break;
+		case 18:
+			if (level == 18)
+				proficiencyBonus = 6;
+			break;
+		case 19:
+			if (level == 19)
+				proficiencyBonus = 6;
+			break;
+		case 20:
+			if (level == 20)
+				proficiencyBonus = 6;
+			break;
 		
 		}
 		
@@ -189,17 +281,88 @@ public class Character {
 	
 	public static void armourClass(){
 		
+		boolean stealthDisadvantage;
+		
 		int armourDexBonus;
 		int totalArmourClass;
 		int armourValue;
+		int strengthRequirement;
+		
+		switch(armourType){
+		case "None":
+			armourValue = 10;
+			stealthDisadvantage = false;
+			break;
+		case "Padded":
+			armourValue = 11;
+			stealthDisadvantage = true;
+			break;
+		case "Leather":
+			armourValue = 11;
+			stealthDisadvantage = false;
+			break;
+		case "Studded Leather":
+			armourValue = 12;
+			stealthDisadvantage = false;
+			break;
+		case "Hide":
+			armourValue = 12;
+			armourDexBonus = 2;
+			stealthDisadvantage = false;
+			break;
+		case "Chain Shirt": 
+			armourValue = 13;
+			armourDexBonus = 2;
+			stealthDisadvantage = false;
+			break;
+		case "Scale Mail":
+			armourValue = 14;
+			armourDexBonus = 2;
+			stealthDisadvantage = true;
+			break;
+		case "Breastplate":
+			armourValue = 14;
+			armourDexBonus = 2;
+			stealthDisadvantage = false;
+			break;
+		case "Half Plate":
+			armourValue = 15;
+			armourDexBonus = 2;
+			stealthDisadvantage = true;
+			break;
+		case "Ring Mail":
+			armourValue = 14;
+			armourDexBonus = 0;
+			stealthDisadvantage = true;
+			break;
+		case "Chain Mail":
+			armourValue = 16;
+			armourDexBonus = 0;
+			stealthDisadvantage = true;
+			strengthRequirement = 13;
+			break;
+		case "Splint":
+			armourValue = 17;
+			armourDexBonus = 0;
+			stealthDisadvantage = true;
+			strengthRequirement = 15;
+			break;
+		case "Plate":
+			armourValue = 18;
+			armourDexBonus = 0;
+			stealthDisadvantage = true;
+			strengthRequirement = 15;
+			break;
+			
+		}
 		
 		if (dexteritybonus > armourDexBonus) {
 			
 			dexteritybonus = armourDexBonus;
 			
-			totalArmourClass = 10 + dexteritybonus + armourValue;
-			
 		}
+		
+		totalArmourClass = dexteritybonus + armourValue;
 		
 	}
 
