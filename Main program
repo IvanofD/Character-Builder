@@ -1,0 +1,272 @@
+package characterSheet;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Character {
+	
+	public static String charName;
+	public static String charClass;
+	
+	public static int level;
+	public static int hp;
+	public static int ac;
+	public static int strength;
+	public static int dexterity;
+	public static int constitution;
+	public static int intelligence;
+	public static int wisdom;
+	public static int charisma;
+	public static int roll;
+	public static int proficiencyBonus;
+	public static int statBonus;
+	
+	public static int strengthbonus;
+	public static int dexteritybonus;
+	public static int constitutionbonus;
+	public static int intelligencebonus;
+	public static int wisdombonus;
+	public static int charismabonus;
+
+	
+	// calculates the stat bonuses using the results of the random stat rolls
+	public static void calculateBonus(){
+		strengthbonus = calculate(strength);
+		dexteritybonus = calculate(dexterity);
+		constitutionbonus = calculate(constitution);
+		intelligencebonus = calculate(intelligence);
+		wisdombonus = calculate(wisdom);
+		charismabonus = calculate(charisma);
+	}
+	
+//	public static int calculate(int stat) {
+//		int result = (stat - 10) /2;
+//		System.out.print("Bonus calculated: " + result + "\n");
+//		return result;
+//	}
+	
+
+	// reading in the text file
+	public static BufferedReader readFile(){
+		
+		BufferedReader in = null;
+		try {
+			File character = new File("character.txt");
+			in = new BufferedReader(new FileReader(character));
+		}
+		catch (FileNotFoundException e) {
+			System.out.println("The file doesn't exist.");
+			System.exit(0);
+		}
+		return in;
+		
+	}
+	public static void readCharacter(BufferedReader in){
+		
+		String line = "";
+		String[] data;
+		try {
+			line = in.readLine();
+		}
+		catch (IOException e) {
+			System.out.println("I/O Error");
+			System.exit(0);
+		}
+
+		data = line.split("\t");
+		charName = data[0];
+		charClass = data[1];
+		level = Integer.parseInt(data[2]);
+		strength = Integer.parseInt(data[3]);
+		dexterity = Integer.parseInt(data[4]);
+		constitution = Integer.parseInt(data[5]);
+		intelligence = Integer.parseInt(data[6]);
+		wisdom = Integer.parseInt(data[7]);
+		charisma = Integer.parseInt(data[8]);
+	}
+	// function to roll a dice 4 times
+	public static int rollDie(){
+		int sides = 6;
+		int result = 0;
+		
+		int diceroll1 = (int) (Math.random() * sides) + 1;
+		int diceroll2 = (int) (Math.random() * sides) + 1;
+		int diceroll3 = (int) (Math.random() * sides) + 1;
+		int diceroll4 = (int) (Math.random() * sides) + 1;
+		
+		
+		int[] rollresults = {diceroll1, diceroll2, diceroll3, diceroll4};
+		
+		result = sumoftopthree(rollresults);
+
+		return result;
+	}
+// checks the results of the random results and calculates the total of the three highest numbers	
+	public static int sumoftopthree(int[] rollresults) {
+		
+		int result = 0;
+		int lowest = 6;
+		
+		//int test = rollresults.length
+		
+		for(int i = 0; i < rollresults.length; i++){
+			//rollresults[i]
+			result += rollresults[i];
+			System.out.println("Diceroll:" + rollresults[i]);
+			if (rollresults[i] < lowest){
+				lowest = rollresults[i];
+			}
+		}
+//  result -= lowest is the same as result = result - lowest
+		result -= lowest;
+		System.out.println("The lowest number was:" + lowest);
+		System.out.println("Stat Calculated:" + result);
+		return result;
+	}
+	
+//	public static int returnthelowest(){
+//		int strengthresult1 = Math.min(strength1, strength2);
+//		int strengthresult2 = Math.min(strength3, strength4);
+//		int strengthresult3 = Math.min(strengthresult1,strengthresult2);
+//		
+//		return strengthresult3;
+		
+//	}
+	
+	
+	
+	public static int calculate(int stat) {
+		
+		int roll = 0;
+		double rollDecimal = 0.0;
+		
+		if(stat >= 10){
+			rollDecimal = ((double)stat - 10) /2;	
+		}
+		else {
+			rollDecimal = (((double)stat - 10) /2) - 0.5;	
+		}
+		
+		roll = (int)rollDecimal;
+				
+		System.out.print("Bonus calculated: " + roll + "\n");
+		return roll;
+	}
+	
+	public static void bonusfromroll(){
+		strengthbonus = calculate(strength);
+		dexteritybonus = calculate(dexterity);
+		constitutionbonus = calculate(constitution);
+		intelligencebonus = calculate(intelligence);
+		wisdombonus = calculate(wisdom);
+		charismabonus = calculate(charisma);
+	}
+	
+	public static void healthpoints(){
+		
+		int hitDie = 12;
+		int HP;
+		
+		HP = (hitDie + constitutionbonus) * level;	
+		
+	}
+	
+	public static void calculateProficiency(){
+		
+		switch (proficiencyBonus){
+		case 1:
+			if (level = 1)
+				proficiencyBonus = 2;
+			break;
+		
+		
+		}
+		
+	}
+	
+	public static void armourClass(){
+		
+		int armourDexBonus;
+		int totalArmourClass;
+		int armourValue;
+		
+		if (dexteritybonus > armourDexBonus) {
+			
+			dexteritybonus = armourDexBonus;
+			
+			totalArmourClass = 10 + dexteritybonus + armourValue;
+			
+		}
+		
+	}
+
+	public static void savingThrows(int bonusfromroll){
+		
+		int savingThrow;
+		int statBonus;
+		int proficientBonus;
+		
+		savingThrow = statBonus;
+		proficientBonus = savingThrow + proficiencyBonus;
+		
+	}
+	
+	public static void rangedAttackBonus(){
+		
+		int rab = dexteritybonus + proficiencyBonus;
+		
+	}
+	
+	public static void rangedDamageBonus(){
+		
+		
+	}
+	
+	public static void meleeAttackBonus(){
+		
+		int mab = strengthbonus + proficiencyBonus;
+		
+	}
+	
+	public static void meleeDamageBonus(){
+		
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//BufferedReader reader = readFile();
+		//readCharacter(reader);
+		//calculateBonus();
+		//rollDie();
+		
+	//	int test = calculate(3);
+		//int test2 = calculate(4);
+		//int test3 = calculate(5);
+	//int test4 = calculate(6);
+	//	int test5 = calculate(7);
+	//	int test6 = calculate(8);
+	//	int test7 = calculate(9);
+	//	int test8 = calculate(10);
+	//	int test9 = calculate(11);
+	//	int test10 = calculate(12);
+	//	int test11 = calculate(13);
+	//	int test12 = calculate(14);
+	//	int test13 = calculate(15);
+	//	int test14 = calculate(16);
+	//	int test16 = calculate(18);
+		
+		strength = rollDie();
+		dexterity = rollDie();
+		constitution = rollDie();
+		intelligence = rollDie();
+		wisdom = rollDie();
+		charisma = rollDie();
+		bonusfromroll();
+		
+		}
+	
+}
