@@ -1,10 +1,14 @@
-package characterSheet;
+package com.Ivan.Characterbuilder;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Character {
 	
@@ -24,6 +28,7 @@ public class Character {
 	public static int roll;
 	public static int proficiencyBonus;
 	public static int statBonus;
+	public static int totalArmourClass;
 	
 	public static int strengthbonus;
 	public static int dexteritybonus;
@@ -31,6 +36,14 @@ public class Character {
 	public static int intelligencebonus;
 	public static int wisdombonus;
 	public static int charismabonus;
+	
+	public static int armourDexBonus;
+	public static int armourValue;
+	public static int strengthRequirement;
+	
+	public static int weaponDamage;
+	
+	public static boolean stealthDisadvantage;
 
 	
 	// calculates the stat bonuses using the results of the random stat rolls
@@ -169,7 +182,6 @@ public class Character {
 	
 	public static void healthpoints(){
 		
-		
 		int HP;
 		
 		switch (charClass){
@@ -179,13 +191,35 @@ public class Character {
 		case "Bard":
 			hitDie = 8;
 			break;
-		
-		
-		
+		case "Cleric":
+			hitDie = 8;
+			break;
+		case "Druid":
+			hitDie = 8;
+			break;
+		case "Fighter":
+			hitDie = 10;
+			break;
+		case "Paladin":
+			hitDie = 10;
+			break;
+		case "Ranger":
+			hitDie = 10;
+			break;
+		case "Rogue":
+			hitDie = 6;
+			break;
+		case "Sorcerer":
+			hitDie = 6;
+			break;
+		case "Warlock":
+			hitDie = 8;
+			break;
+		case "Wizard":
+			hitDie = 6;
+			break;
+			
 		}
-		
-		
-		
 		
 		HP = (hitDie + constitutionbonus) * level;	
 		
@@ -280,13 +314,6 @@ public class Character {
 	}
 	
 	public static void armourClass(){
-		
-		boolean stealthDisadvantage;
-		
-		int armourDexBonus;
-		int totalArmourClass;
-		int armourValue;
-		int strengthRequirement;
 		
 		switch(armourType){
 		case "None":
@@ -386,6 +413,8 @@ public class Character {
 	public static void rangedDamageBonus(){
 		
 		
+		int rdb = dexteritybonus + weaponDamage;
+		
 	}
 	
 	public static void meleeAttackBonus(){
@@ -396,7 +425,7 @@ public class Character {
 	
 	public static void meleeDamageBonus(){
 		
-		
+		int mdb = strengthbonus + weaponDamage;
 	}
 
 	public static void main(String[] args) {
@@ -430,6 +459,80 @@ public class Character {
 		charisma = rollDie();
 		bonusfromroll();
 		
+		JFrame frame = new JFrame ("Character Builder");
+		frame.setSize(350, 260);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel panel1 = new JPanel();
+		
+		JLabel CharName = new JLabel(charName);
+		JLabel CharClass = new JLabel(charClass);
+		JLabel labCharLevel = new JLabel("Level");
+		JLabel CharLevel = new JLabel(String.valueOf(level));
+		JLabel labCharStrength = new JLabel("Str");
+		JLabel CharStrength = new JLabel(String.valueOf(strength));
+		JLabel labCharDexterity = new JLabel("Dex");
+		JLabel CharDexterity = new JLabel(String.valueOf(dexterity));
+		JLabel labCharConstitution = new JLabel("Con");
+		JLabel CharConstitution = new JLabel(String.valueOf(constitution));
+		JLabel labCharIntelligence = new JLabel("Int");
+		JLabel CharIntelligence = new JLabel(String.valueOf(intelligence));
+		JLabel labCharWisdom = new JLabel("Wis");
+		JLabel CharWisdom = new JLabel(String.valueOf(wisdom));
+		JLabel labCharCharisma = new JLabel("Cha");
+		JLabel CharCharisma = new JLabel(String.valueOf(charisma));
+		
+		JLabel labCharStrengthBonus = new JLabel("Str Bonus");
+		JLabel CharStrengthBonus = new JLabel(String.valueOf(strengthbonus));
+		JLabel labCharDexterityBonus = new JLabel("Dex Bonus");
+		JLabel CharDexterityBonus = new JLabel(String.valueOf(dexteritybonus));
+		JLabel labCharConstitutionBonus = new JLabel("Con Bonus");
+		JLabel CharConstitutionBonus = new JLabel(String.valueOf(constitutionbonus));
+		JLabel labCharIntelligenceBonus = new JLabel("Int Bonus");
+		JLabel CharIntelligenceBonus = new JLabel(String.valueOf(intelligencebonus));
+		JLabel labCharWisdomBonus = new JLabel("Wis Bonus");
+		JLabel CharWisdomBonus = new JLabel(String.valueOf(wisdombonus));
+		JLabel labCharCharismaBonus = new JLabel("Cha Bonus");
+		
+		JLabel CharCharismaBonus = new JLabel(String.valueOf(charismabonus));
+		JLabel CharHealthPoints = new JLabel(String.valueOf(hitDie));
+		JLabel CharArmourClass = new JLabel(String.valueOf(totalArmourClass));
+		
+		panel1.add(CharName);
+		panel1.add(CharClass);
+		panel1.add(labCharLevel);
+		panel1.add(CharLevel);
+		panel1.add(labCharStrength);
+		panel1.add(CharStrength);
+		panel1.add(labCharDexterity);
+		panel1.add(CharDexterity);
+		panel1.add(labCharConstitution);
+		panel1.add(CharConstitution);
+		panel1.add(labCharIntelligence);
+		panel1.add(CharIntelligence);
+		panel1.add(labCharWisdom);
+		panel1.add(CharWisdom);
+		panel1.add(labCharCharisma);
+		panel1.add(CharCharisma);
+		
+		panel1.add(labCharStrengthBonus);
+		panel1.add(CharStrengthBonus);
+		panel1.add(labCharDexterityBonus);
+		panel1.add(CharDexterityBonus);
+		panel1.add(labCharConstitutionBonus);
+		panel1.add(CharConstitutionBonus);
+		panel1.add(labCharIntelligenceBonus);
+		panel1.add(CharIntelligenceBonus);
+		panel1.add(labCharWisdomBonus);
+		panel1.add(CharWisdomBonus);
+		panel1.add(labCharCharismaBonus);
+		panel1.add(CharCharismaBonus);
+		panel1.add(CharHealthPoints);
+		panel1.add(CharArmourClass);
+		
+		frame.add(panel1);
+
 		}
 	
 }
