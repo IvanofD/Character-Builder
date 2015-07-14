@@ -1,4 +1,4 @@
-package com.Ivan.Characterbuilder;
+package characterSheet;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,7 +14,10 @@ public class Character {
 	
 	public static String charName;
 	public static String charClass;
+	public static String charRace;
 	public static String armourType;
+	public static String meleeWeapon;
+	public static String rangedWeapon;
 	
 	public static int level;
 	public static int hitDie;
@@ -93,14 +96,17 @@ public class Character {
 		data = line.split("\t");
 		charName = data[0];
 		charClass = data[1];
-		level = Integer.parseInt(data[2]);
-		strength = Integer.parseInt(data[3]);
-		dexterity = Integer.parseInt(data[4]);
-		constitution = Integer.parseInt(data[5]);
-		intelligence = Integer.parseInt(data[6]);
-		wisdom = Integer.parseInt(data[7]);
-		charisma = Integer.parseInt(data[8]);
-		armourType = data[9];
+		charRace = data[2];
+		level = Integer.parseInt(data[3]);
+		strength = Integer.parseInt(data[4]);
+		dexterity = Integer.parseInt(data[5]);
+		constitution = Integer.parseInt(data[6]);
+		intelligence = Integer.parseInt(data[7]);
+		wisdom = Integer.parseInt(data[8]);
+		charisma = Integer.parseInt(data[9]);
+		armourType = data[10];
+		meleeWeapon = data[11];
+		rangedWeapon = data[12];
 	}
 	// function to roll a dice 4 times
 	public static int rollDie(){
@@ -404,6 +410,18 @@ public class Character {
 		
 	}
 	
+	public static void meleeWeaponStats(){
+		
+		
+		
+	}
+	
+	public static void rangedWeaponStats(){
+		
+		
+		
+	}
+	
 	public static void rangedAttackBonus(){
 		
 		int rab = dexteritybonus + proficiencyBonus;
@@ -536,3 +554,4 @@ public class Character {
 		}
 	
 }
+
